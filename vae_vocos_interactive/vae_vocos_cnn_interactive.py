@@ -190,7 +190,7 @@ with torch.no_grad():
         encoded_batch = Encoder.reparameterize(mu, std).detach().cpu()
         audio_encodings.append(encoded_batch)
     audio_encodings = torch.cat(audio_encodings, dim=0).numpy()
-tsne = TSNE(n_components=2, n_iter=5000, verbose=1)
+tsne = TSNE(n_components=2, max_iter=5000, verbose=1)
 Z_tsne = tsne.fit_transform(audio_encodings)
 
 # ==== kNN for latent averaging based on mouse clicks ====
